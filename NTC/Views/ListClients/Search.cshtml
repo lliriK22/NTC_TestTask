@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Client>
+
+<h1>Поиск сотрудников</h1>
+
+<div id="modDialog" class="modal fade" >
+        <div id="dialogContent" class="modal-dialog"></div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Организация</th>
+            <th scope="col">Должность</th>
+            <th scope="col">Контакты</th>
+            <th>Настройки</th>
+        </tr>
+    </thead>
+    <tbody>
+        <a class="back_btn" asp-controller="ListClients" asp-action="Index">Назад</a>
+        @if(Model != null)
+        {
+            @foreach (var client in Model)
+            {
+                <tr>
+                    <th>@client.Id</th>
+                    <th>@client.FIO</th>
+                    <th>@client.Job</th>
+                    <th>@client.JobTitle</th>
+                    <th>@client.Contacts</th>
+                    <th>
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Действия
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item open_modal_window" asp-controller="ListClients" asp-action="Edit" asp-route-id="@client.Id">Изменить</a></li>
+                            <li><a class="dropdown-item open_modal_window" asp-controller="ListClients" asp-action="Delete" asp-route-id="@client.Id">Удалить</a></li>
+                          </ul>
+                        </div>
+                    </th>
+                </tr>
+            }   
+        }
+    </tbody>
+</table>
+
+@section Scripts
+{
+  <script>
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $(".open_modal_window").click(function (e) {
+ 
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#dialogContent').html(data);
+                $('#modDialog').modal('show');
+            });
+        });
+    })
+  </script>
+}

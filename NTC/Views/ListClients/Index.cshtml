@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Client>
+
+@{
+	ViewData["Title"] = "Главная страница";
+}
+
+<h1>Список сотрудников</h1>
+
+<div class="main_body">
+    <div id="modDialog" class="modal fade" >
+        <div id="dialogContent" class="modal-dialog"></div>
+    </div>
+    <div class="search_clients">
+        <form asp-controller="ListClients" asp-action="Search" method="get">
+            <div class="input-group mb-3 search_clients_group">
+              <input type="text" class="form-control search_clients" placeholder="Поиск" name="searchString">
+              <button class="btn btn-outline-secondary" type="submit">Поиск</button>
+            </div>
+        </form>
+    </div>
+    <div class="btn_add_client">
+        <a asp-controller="ListClients" asp-action="Create" class="btn-info open_modal_window">Добавить</a>
+    </div>
+    <div class="table_main">
+        <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Организация</th>
+            <th scope="col">Должность</th>
+            <th scope="col">Контакты</th>
+            <th>Настройки</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+            {
+                <tr>
+                    <th>@client.Id</th>
+                    <th>@client.FIO</th>
+                    <th>@client.Job</th>
+                    <th>@client.JobTitle</th>
+                    <th>@client.Contacts</th>
+                    <th>
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Действия
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item open_modal_window" asp-controller="ListClients" asp-action="Edit" asp-route-id="@client.Id">Изменить</a></li>
+                            <li><a class="dropdown-item open_modal_window" asp-controller="ListClients" asp-action="Delete" asp-route-id="@client.Id">Удалить</a></li>
+                          </ul>
+                        </div>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+</div>
+
+@section Scripts
+{
+  <script>
+    $(function () {
+        $.ajaxSetup({ cache: false });
+        $(".open_modal_window").click(function (e) {
+ 
+            e.preventDefault();
+            $.get(this.href, function (data) {
+                $('#dialogContent').html(data);
+                $('#modDialog').modal('show');
+            });
+        });
+    })
+  </script>
+}

@@ -1,0 +1,39 @@
+﻿@model Client
+
+@{
+    ViewBag.Title = "Изменение данных клиента";
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="addClient">Изменение данных клиента</h4>
+        <button type="button" class="close" data-dismiss="modal">
+            <span>X</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form asp-controller="ListClients" asp-action="Edit" method="post">
+            <div class="form-group ">
+                <label asp-for="FIO">ФИО:</label>
+                <input asp-for="FIO" type="text"class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Job">Организация:</label>
+                <input asp-for="Job" type="text"class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="JobTitle">Должность:</label>
+                <input asp-for="JobTitle" type="text"class="form-control" />
+            </div>
+            <div class="form-group">
+                <label >Номер тел.:</label>
+                <input name="phone" type="number" class="form-control input_phone_num" />
+                <label >Email:</label>
+                <input name="email" type="text" class="form-control input_email" />
+            </div>
+            <div class="form-btn-add">
+                <button type="submit" class="btn btn-primary button_action" data-add="modal">Изменить</button>
+            </div>
+        </form>
+    </div>
+</div>

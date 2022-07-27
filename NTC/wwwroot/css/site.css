@@ -1,0 +1,78 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: white;
+}
+
+.btn_add_client {
+    margin-top: 30px;
+}
+
+.back_btn {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.table {
+    margin-top: 30px;
+}
+
+.table_main {
+    margin-top: 20px;
+}
+
+.table_main table {
+    background-color: white;
+}
+
+.table_main table th{
+    font-weight: 400;
+}
+
+.btn {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.btn_add_client a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.search_clients_group {
+    width:500px;
+    margin: 50px auto;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+.button_action {
+    border: none;
+    margin-top: 10px;
+}
